@@ -1,4 +1,5 @@
-# SemirandomWalk
-Repo for the EVE API contest entry
+# Dynamic Exploration Route Planner (DERP)
 
-[Please enter code as highlighted in this image into prompt](Semirandomwalk.PNG)
+Utilizes data provided by CREST to dynamically plan exploration routes optimised for profit and (relative) safety.
+
+[Please enter code as highlighted in this image into prompt](DERP.PNG)
