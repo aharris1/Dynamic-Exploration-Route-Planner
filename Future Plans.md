@@ -15,4 +15,4 @@ Medium Priority: <br>
 Low Priority: <br>
 -Implementing statistical models to correlate jumps with the probability of finding a site. <br>
 -Crowd-sourcing data to improve model accuracy. <br>
--Algorithm adaptation to allow for navigation to high sec optimised for safety.
+-Algorithm adaptation to allow for navigation to empire space optimised for safety.
