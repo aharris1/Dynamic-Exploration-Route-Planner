@@ -25,4 +25,5 @@ Notes about use:<br>
 -Recommended path length is 8 jumps.  Path lengths above 10 tend to take a long time, and 13 tends to cause the program to crash.<br>
 -Once a system is put on a path, the program remembers it and tries not to visit it again.  That effect is reset if the program is restarted.<br>
 -The "client secret" used for CREST Authentication is in the source code, and may pose a security risk.  If you'd like to eliminate that risk, you can register an account at: [developers.eveonline.com](https://developers.eveonline.com) and then register a new application to get a new "client secret."<br>
--The system stats (kills, jumps, and poddings) are cached in the XML API.  Once the CREST system stats endpoint is enabled for third-party applications the XML API calls will be converted to CREST calls.
+-The system stats (kills, jumps, and poddings) are cached in the XML API.  Once the CREST system stats endpoint is enabled for third-party applications the XML API calls will be converted to CREST calls.<p>
+
