@@ -27,3 +27,5 @@ Notes about use:<br>
 -The "client secret" used for CREST Authentication is in the source code, and may pose a security risk.  If you'd like to eliminate that risk, you can register an account at: [developers.eveonline.com](https://developers.eveonline.com) and then register a new application to get a new "client secret."<br>
 -The system stats (kills, jumps, and poddings) are cached in the XML API.  Once the CREST system stats endpoint is enabled for third-party applications the XML API calls will be converted to CREST calls.<p>
 
+Troubleshooting Tips:
+-If the program fails to add new waypoints to the character's navigation, it's possible that the CREST Proxy is throwing a 502 (Bad Gateway) Error.  Try restarting the computer, resetting your internet connection, and in case neither of those work, waiting. 
