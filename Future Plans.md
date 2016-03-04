@@ -5,6 +5,8 @@ High Priority: <br>
 <p>
 Medium Priority: <br>
 -Further tuning the system valuation algorithms <br>
+-Storing a history of visited systems and the time they were visted, allowing it to persist between program sessions.<br>
+-Automatic authorization from the refresh token.<br>
 <p>
 Low Priority: <br>
 -Implementing statistical models to correlate jumps with the probability of finding a site. <br>
