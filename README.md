@@ -18,7 +18,7 @@ Steps for use:<br>
 1. Enter desired path length in the spinner<br>![](use1.PNG)<br>
 2. Press start<br>![](use2.PNG)<br>
 3. See waypoints in EVE Client<br>![](use3.PNG)<br>
-4. Fly along waypoints until you reach the end, then repeat from step one.<br>
+4. Fly along waypoints (scanning when appropriate) until you reach the end, then repeat from step one.<br>
 <p>
 Notes about use:<br>
 -Recommended path length is 8 jumps.  Path lengths above 10 tend to take a long time, and 13 tends to cause the program to crash.<br>
