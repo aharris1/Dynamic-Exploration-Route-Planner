@@ -2,8 +2,10 @@ High Priority: <br>
 -Multithreading implementation (or at least a progress bar) to prevent the GUI from hanging when plotting new courses. <br>
 -Storing refresh token in a file. <br>
 -Realtime character tracking using CREST<br>
-    -Implementing workaround for CREST [location endpoint problems](https://forums.eveonline.com/default.aspx?g=posts&m=6274873#post6274873)<br>
+&nbsp;&nbsp;&nbsp;&nbsp; -Implementing workaround for CREST [location endpoint problems](https://forums.eveonline.com/default.aspx?g=posts&m=6274873#post6274873)<br>
 -Implementing additional error-handling. <br>
+&nbsp;&nbsp;&nbsp;&nbsp; -Provide an error box to indicate errors to users
+
 -Extended path planning by stitching multiple paths together end-to-end.
 <p>
 Medium Priority: <br>
