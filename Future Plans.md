@@ -1,6 +1,6 @@
 High Priority: <br>
 -Storing refresh token in a file. <br>
--Multithreading implementation to prevent the GUI from hanging when plotting new systems (or at least a progress bar). <br>
+-Multithreading implementation (or at least a progress bar) to prevent the GUI from hanging when plotting new courses. <br>
 -Implementing additional error-handling. <br>
 -Extended path planning by stitching multiple paths together end-to-end. <br>
 <p>
