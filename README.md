@@ -1,7 +1,7 @@
 # Dynamic Exploration Route Planner (DERP)
 See [/out/artifacts/Dynamic_Exploration_Route_Planner_jar/](/out/artifacts/Dynamic_Exploration_Route_Planner_jar/) for JAR Executable
 
-Utilizes data provided by CREST (and the XML API) to dynamically plan exploration routes optimised for profit and (relative) safety.
+Utilizes data provided by CREST (and the XML API) to dynamically plan (null-sec, for now) exploration routes optimised for profit and (relative) safety.
 
 Steps for initial authorization and setup:<br>
 1. Press EVE SSO Login<br>![](step1.PNG)<br>
