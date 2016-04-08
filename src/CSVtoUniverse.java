@@ -26,14 +26,9 @@ public class CSVtoUniverse {
             Universe universe = new Universe(parseSystems(solarSystemsMap));
             //Stores the parsed connections as an array of integer pairs.
             int[][] links = parseConnections(connections);
-//            for(int[] link : links){
-//                System.out.println(Arrays.toString(link));
-//            }
             //Applies the links
             universe.addConnection(links);
 
-//            System.out.println(Arrays.toString(parseSystems(solarSystemsMap).toArray()));
-            //System.out.println(universe.toString());
             //Returns the completed universe
             return universe;
         }
@@ -51,13 +46,6 @@ public class CSVtoUniverse {
             SolarSystem solarSystem = new SolarSystem(Integer.parseInt(records.get(i).get(2)));
             solarSystem.setSecurity(Double.parseDouble(records.get(i).get(21)));
             solarSystems.add(solarSystem);
-//            StringBuffer buffer = new StringBuffer();
-//            buffer.append(record.get(2));
-//            buffer.append(", ");
-//            buffer.append(record.get(3));
-//            buffer.append(", ");
-//            buffer.append(record.get(21));
-//            System.out.println(buffer.toString());
         }
         return solarSystems;
     }

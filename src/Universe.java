@@ -86,16 +86,6 @@ public class Universe {
             }
         }
     }
-//
-//    /**
-//     * Has each system spread radiation to every system within a range set by a constant above
-//     */
-//    public void applyEffectRadiation(){
-//        Iterator<SolarSystem> iterator = IDTable.values().iterator(); //Gets an iterator for
-//        while(iterator.hasNext()){
-//            iterator.next().applyRadiatedEffects(MAX_RADIATION_RANGE);
-//        }
-//    }
 
     public void applyJumps(int[][] jumps){
         for(int i = 0; i < jumps.length; i++){

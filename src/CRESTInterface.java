@@ -141,30 +141,4 @@ public class CRESTInterface {
             return -1;
         }
     }
-
-    /**
-     * #Not in use
-     * Gets the kills for a particular system.
-     * NOTE: CREST Implementation pending third-party authorization for system stat endpoint
-     * Temporary Solution: Extract data from a parsed API
-     * @param systemID the systemID of the system
-     * @return the number of kills in the last hour
-     */
-//    public static int getKills(int systemID){
-//
-//        return 0;
-//    }
-
-    /**
-     * #Not in use
-     * Gets the jumps for the given system
-     * @param systemID the systemID of the solar system
-     * @return the number of jumps in the last hour
-     */
-//    public static int getJumps(int systemID){
-//        return 0;
-//    }
-//    public static int getCharacterID(String authenticationCode){
-//
-//    }
 }
