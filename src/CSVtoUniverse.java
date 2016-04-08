@@ -9,9 +9,7 @@ import org.apache.commons.csv.CSVRecord;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.nio.charset.Charset;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -19,8 +17,8 @@ import java.util.Set;
 public class CSVtoUniverse {
 
     public static Universe generateUniverse(){
-        File solarSystemsMap = new File("C:\\Users\\Class2018\\IdeaProjects\\Explorer Route Finder\\mapSolarSystems.csv");
-        File connections = new File("C:\\Users\\Class2018\\IdeaProjects\\Explorer Route Finder\\mapSolarSystemJumps.csv");
+        File solarSystemsMap = new File("./mapSolarSystems.csv");
+        File connections = new File("./mapSolarSystemJumps.csv");
         try{
             //Initialises the universe object with a Set of the SolarSystem objects parsed from the csv file
             Universe universe = new Universe(parseSystems(solarSystemsMap));

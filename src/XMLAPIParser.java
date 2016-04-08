@@ -1,6 +1,5 @@
 import com.google.api.client.http.*;
 import com.google.api.client.http.javanet.NetHttpTransport;
-import com.google.api.client.repackaged.org.apache.commons.codec.binary.StringUtils;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
