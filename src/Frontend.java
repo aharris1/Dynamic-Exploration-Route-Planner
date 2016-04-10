@@ -3,6 +3,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.Desktop;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -83,6 +86,12 @@ public class Frontend extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 URLTextField.setText(authenticator.start());
+                if(Desktop.isDesktopSupported()){
+                    try {
+                        Desktop.getDesktop().browse(new URI(authenticator.start()));
+                    }catch (Exception ex){
+                    }
+                }
             }
         });
         buttonStartRoute.addActionListener(new ActionListener() {
