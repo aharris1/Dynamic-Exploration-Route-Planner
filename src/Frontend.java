@@ -132,6 +132,7 @@ public class Frontend extends JFrame{
 
 
         Frontend dialog = new Frontend();
+        dialog.setTitle("Dynamic Exploration Route Planner");
         dialog.pack();
         dialog.setVisible(true);
     }
