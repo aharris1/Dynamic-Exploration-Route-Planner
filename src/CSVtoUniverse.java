@@ -7,18 +7,18 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.net.URL;
 
 public class CSVtoUniverse {
 
     public static Universe generateUniverse(){
-        File solarSystemsMap = new File("./mapSolarSystems.csv");
-        File connections = new File("./mapSolarSystemJumps.csv");
+        URL solarSystemsMap = CSVtoUniverse.class.getResource("/data/mapSolarSystems.csv");
+        URL connections = CSVtoUniverse.class.getResource("/data/mapSolarSystemJumps.csv");
         try{
             //Initialises the universe object with a Set of the SolarSystem objects parsed from the csv file
             Universe universe = new Universe(parseSystems(solarSystemsMap));
@@ -36,7 +36,7 @@ public class CSVtoUniverse {
         return null;
     }
 
-    public static Set<SolarSystem> parseSystems(File csvFile) throws IOException{
+    public static Set<SolarSystem> parseSystems(URL csvFile) throws IOException{
         CSVParser parser = CSVParser.parse(csvFile, Charset.defaultCharset(), CSVFormat.EXCEL);
         List<CSVRecord> records = parser.getRecords();
         Set<SolarSystem> solarSystems = new HashSet<SolarSystem>();
@@ -48,7 +48,7 @@ public class CSVtoUniverse {
         return solarSystems;
     }
 
-    public static int[][] parseConnections(File csvFile) throws IOException{
+    public static int[][] parseConnections(URL csvFile) throws IOException{
         CSVParser parser = CSVParser.parse(csvFile, Charset.defaultCharset(), CSVFormat.EXCEL);
         List<CSVRecord> records = parser.getRecords();
         int[][] returnArray = new int[records.size() - 1][2];
