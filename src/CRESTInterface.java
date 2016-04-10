@@ -1,11 +1,6 @@
 import com.google.api.client.http.*;
 import com.google.api.client.http.javanet.NetHttpTransport;
-import com.google.api.client.http.json.JsonHttpContent;
 import com.google.api.client.util.Charsets;
-import com.google.api.client.util.IOUtils;
-import com.google.gson.GsonBuilder;
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.RegularExpression;
-import org.mortbay.util.ajax.JSON;
 
 
 import java.io.InputStream;
@@ -141,30 +136,4 @@ public class CRESTInterface {
             return -1;
         }
     }
-
-    /**
-     * #Not in use
-     * Gets the kills for a particular system.
-     * NOTE: CREST Implementation pending third-party authorization for system stat endpoint
-     * Temporary Solution: Extract data from a parsed API
-     * @param systemID the systemID of the system
-     * @return the number of kills in the last hour
-     */
-//    public static int getKills(int systemID){
-//
-//        return 0;
-//    }
-
-    /**
-     * #Not in use
-     * Gets the jumps for the given system
-     * @param systemID the systemID of the solar system
-     * @return the number of jumps in the last hour
-     */
-//    public static int getJumps(int systemID){
-//        return 0;
-//    }
-//    public static int getCharacterID(String authenticationCode){
-//
-//    }
 }

@@ -4,11 +4,8 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson.JacksonFactory;
 import com.google.api.client.util.Base64;
-import com.google.api.client.util.IOUtils;
 import com.google.api.client.util.store.MemoryDataStoreFactory;
 
-import java.io.IOException;
-import java.io.OutputStream;
 import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.regex.Matcher;
