@@ -5,10 +5,10 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.Desktop;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.HashSet;
 
 public class Frontend extends JFrame{
     private JPanel contentPane;
@@ -110,10 +110,14 @@ public class Frontend extends JFrame{
                         lastAuthRefresh = System.currentTimeMillis();
                     }
                     LinkedList<SolarSystem> route = RouteGenerator.selectBestRoute(RouteGenerator.generateRoutes(universe.getSolarSystem(CRESTInterface.currentLocation(authCode, characterID)), jumps));
+                    HashSet<Integer> VisitedSystems = new HashSet<Integer>();
                     for(SolarSystem solarSystem : route){
                         solarSystem.setVisited(true, false);
                         System.out.println(solarSystem.toString());
-                        CRESTInterface.addWaypoint(authCode, characterID, solarSystem.getID());
+                        if (VisitedSystems.contains(solarSystem.getID()) == false) {
+                            CRESTInterface.addWaypoint(authCode, characterID, solarSystem.getID());
+                            VisitedSystems.add(solarSystem.getID());
+                        }
                     }
                 }
             }
