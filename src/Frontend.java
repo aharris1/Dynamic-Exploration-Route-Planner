@@ -22,6 +22,7 @@ public class Frontend extends JFrame{
     private JTextField refreshTokenTextField;
     private JButton refreshAuthorizationButton;
     private JTextField URLTextField;
+    private JCheckBox ckAvoidLowsec;
 
     private static long lastAuthRefresh;
     private static long lastUniverseRefresh;
@@ -98,6 +99,7 @@ public class Frontend extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 int jumps = Integer.parseInt(Jumps.getValue().toString());
+                boolean avoidLow = ckAvoidLowsec.isSelected();
                 if(!authCode.isEmpty() && characterID != -1){
                     if(System.currentTimeMillis() - lastUniverseRefresh > UNIVERSE_REFRESH_TIME) {
                         lastUniverseRefresh = System.currentTimeMillis();
@@ -109,7 +111,7 @@ public class Frontend extends JFrame{
                         authCode = authenticator.refresh(refreshCode);
                         lastAuthRefresh = System.currentTimeMillis();
                     }
-                    LinkedList<SolarSystem> route = RouteGenerator.selectBestRoute(RouteGenerator.generateRoutes(universe.getSolarSystem(CRESTInterface.currentLocation(authCode, characterID)), jumps));
+                    LinkedList<SolarSystem> route = RouteGenerator.selectBestRoute(RouteGenerator.generateRoutes(universe.getSolarSystem(CRESTInterface.currentLocation(authCode, characterID)), jumps, avoidLow));
                     HashSet<Integer> VisitedSystems = new HashSet<Integer>();
                     for(SolarSystem solarSystem : route){
                         solarSystem.setVisited(true, false);

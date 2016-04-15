@@ -19,14 +19,19 @@ public class RouteGenerator {
      * @param length the length of the route
      * @return array of routes represented by LinkedLists<SolarSystem>
      */
-    public static LinkedList<SolarSystem>[] generateRoutes(SolarSystem start, int length) {
+    public static LinkedList<SolarSystem>[] generateRoutes(SolarSystem start, int length, boolean avoidLow) {
         if (length > 0) {
             List<LinkedList<SolarSystem>> routes = new ArrayList<LinkedList<SolarSystem>>();
             //Looks at each
             for (SolarSystem option : start.getConnectedSolarSystems()) {
                 //Recursive function: For each option it adds all of the routes that start with that option to the list of routes
                 //Decrements the length value to produce end case: length == 0.
-                for (LinkedList<SolarSystem> generatedRoute : generateRoutes(option, length - 1)) {
+                for (LinkedList<SolarSystem> generatedRoute : generateRoutes(option, length - 1, avoidLow)) {
+                    if (avoidLow == true){
+                        if(option.getSecurity() < 0.5){
+                            continue;
+                        }
+                    }
                     LinkedList<SolarSystem> bufferList = new LinkedList<SolarSystem>();
                     bufferList.add(option); //Adds the first node jumped to as the first step to the bufferList
                     bufferList.addAll(generatedRoute); //Adds the routes that the option can produce to the bufferList
