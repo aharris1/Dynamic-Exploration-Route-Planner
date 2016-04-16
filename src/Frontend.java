@@ -107,14 +107,14 @@ public class Frontend extends JFrame{
                 if(Integer.parseInt(Jumps.getValue().toString()) < 1){
                     Jumps.setValue(1);
                 }
-                if(Integer.parseInt(Jumps.getValue().toString()) >= 10){
-                    Jumps.setValue(10);
+                if(Integer.parseInt(Jumps.getValue().toString()) >= 12){
+                    Jumps.setValue(12);
                 }
-                if(Integer.parseInt(Jumps.getValue().toString()) > 5){
+                if(Integer.parseInt(Jumps.getValue().toString()) > 8){
                     Component c = Jumps.getEditor().getComponent(0);
                     c.setBackground(Color.yellow);
                 }
-                if(Integer.parseInt(Jumps.getValue().toString()) <= 5){
+                if(Integer.parseInt(Jumps.getValue().toString()) <= 8){
                     Component c = Jumps.getEditor().getComponent(0);
                     c.setBackground(Color.white);
                 }
@@ -124,7 +124,7 @@ public class Frontend extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 lbCrestError.setVisible(false);
-                if(Integer.parseInt(Jumps.getValue().toString()) > 5){
+                if(Integer.parseInt(Jumps.getValue().toString()) > 8){
                     if (JOptionPane.showConfirmDialog(null, "You've asked for a large number of waypoints.\n This could take a long time and may fail, do you want to continue?", null, JOptionPane.YES_NO_OPTION) > 0){
                         return;
                     }

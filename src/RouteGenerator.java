@@ -21,7 +21,7 @@ public class RouteGenerator {
     public static Vector<LinkedList<SolarSystem>> generateRoutes(Vector<LinkedList<SolarSystem>> returnSet, LinkedList<SolarSystem> currentPath, int desiredLength, boolean avoidLow) throws StackOverflowError, OutOfMemoryError{
         //if the path is long enough, or if we hit the sanity limit of 20, it's time to return
         //its greater than desired length because we start with our current system
-        if(getUniqueCount(currentPath) > desiredLength){
+        if(getUniqueCount(currentPath) > desiredLength || currentPath.size() > 20){
             returnSet.add(currentPath);
         }
         else {
