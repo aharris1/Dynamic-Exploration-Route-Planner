@@ -1,9 +1,8 @@
 import java.util.LinkedList;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.HashSet;
+import java.util.Vector;
 
 /**
  * Created by Andrew Harris on 2/25/2016.
@@ -19,28 +18,41 @@ public class RouteGenerator {
      * @param length the length of the route
      * @return array of routes represented by LinkedLists<SolarSystem>
      */
-    public static LinkedList<SolarSystem>[] generateRoutes(SolarSystem start, int length) {
-        if (length > 0) {
-            List<LinkedList<SolarSystem>> routes = new ArrayList<LinkedList<SolarSystem>>();
-            //Looks at each
-            for (SolarSystem option : start.getConnectedSolarSystems()) {
-                //Recursive function: For each option it adds all of the routes that start with that option to the list of routes
-                //Decrements the length value to produce end case: length == 0.
-                for (LinkedList<SolarSystem> generatedRoute : generateRoutes(option, length - 1)) {
-                    LinkedList<SolarSystem> bufferList = new LinkedList<SolarSystem>();
-                    bufferList.add(option); //Adds the first node jumped to as the first step to the bufferList
-                    bufferList.addAll(generatedRoute); //Adds the routes that the option can produce to the bufferList
-                    routes.add(bufferList); //Adds the route stored in the bufferList to the overall list of routes
-                }
-            }
-            LinkedList<SolarSystem>[] returnArray = new LinkedList[routes.size()];
-            return routes.toArray(returnArray);
+    public static Vector<LinkedList<SolarSystem>> generateRoutes(Vector<LinkedList<SolarSystem>> returnSet, LinkedList<SolarSystem> currentPath, int desiredLength, boolean avoidLow) {
+        //if the path is long enough, or if we hit the sanity limit of 20, it's time to return
+        if(getUniqueCount(currentPath) >= desiredLength || currentPath.size() > 20){
+            returnSet.add(currentPath);
+            return returnSet;
         }
         else {
-            LinkedList<SolarSystem>[] returnArray = new LinkedList[1];
-            returnArray[0] = new LinkedList<SolarSystem>();
-            return returnArray;
+            SolarSystem currentSystem = currentPath.getLast();
+            for (Iterator<SolarSystem> i = currentSystem.getConnectedSolarSystems().iterator(); i.hasNext();){
+                SolarSystem workingSystem = i.next();
+                if (avoidLow == true){
+                    if(workingSystem.getSecurity() < 0.5){
+                        continue;
+                    }
+                }
+                if (currentPath.size() > 2) {
+                    SolarSystem parent = currentPath.get(currentPath.size() - 2);
+                    if (parent.getID() == workingSystem.getID()){
+                        continue;
+                    }
+                }
+                currentPath.add(workingSystem);
+                returnSet.addAll(generateRoutes(returnSet, currentPath, desiredLength, avoidLow));
+            }
+            return returnSet;
         }
+    }
+
+    public static int getUniqueCount(LinkedList<SolarSystem> route){
+        HashSet<Integer> workingSet = new HashSet<Integer>();
+        Iterator<SolarSystem> routeIterator = route.iterator();
+        while(routeIterator.hasNext()){
+            workingSet.add(routeIterator.next().getID());
+        }
+        return workingSet.size();
     }
 
     /**
@@ -114,17 +126,17 @@ public class RouteGenerator {
      * @param routes an array containing all candidate routes
      * @return the route with the greatest score
      */
-    public static LinkedList<SolarSystem> selectBestRoute(LinkedList<SolarSystem>[] routes){
+    public static LinkedList<SolarSystem> selectBestRoute(Vector<LinkedList<SolarSystem>> routes){
         int bestIndex = 0;
         double bestScore = -1000000000;
         double routeScore;
-        for(int i = 0; i < routes.length; i++){
-            routeScore = evaluateRoutes(routes[i]);
+        for(int i = 0; i < routes.size(); i++){
+            routeScore = evaluateRoutes(routes.elementAt(i));
             if(routeScore > bestScore){
                 bestIndex = i;
                 bestScore = routeScore;
             }
         }
-        return routes[bestIndex];
+        return routes.elementAt(bestIndex);
     }
 }
