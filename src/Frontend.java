@@ -1,9 +1,11 @@
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
@@ -99,10 +101,34 @@ public class Frontend extends JFrame{
                 }
             }
         });
+        Jumps.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                if(Integer.parseInt(Jumps.getValue().toString()) < 1){
+                    Jumps.setValue(1);
+                }
+                if(Integer.parseInt(Jumps.getValue().toString()) >= 10){
+                    Jumps.setValue(10);
+                }
+                if(Integer.parseInt(Jumps.getValue().toString()) > 5){
+                    Component c = Jumps.getEditor().getComponent(0);
+                    c.setBackground(Color.yellow);
+                }
+                if(Integer.parseInt(Jumps.getValue().toString()) <= 5){
+                    Component c = Jumps.getEditor().getComponent(0);
+                    c.setBackground(Color.white);
+                }
+            }
+        });
         buttonStartRoute.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 lbCrestError.setVisible(false);
+                if(Integer.parseInt(Jumps.getValue().toString()) > 5){
+                    if (JOptionPane.showConfirmDialog(null, "You've asked for a large number of waypoints.\n This could take a long time and may fail, do you want to continue?", null, JOptionPane.YES_NO_OPTION) > 0){
+                        return;
+                    }
+                }
                 int jumps = Integer.parseInt(Jumps.getValue().toString());
                 boolean avoidLow = ckAvoidLowsec.isSelected();
                 if(!authCode.isEmpty() && characterID != -1){
@@ -133,6 +159,8 @@ public class Frontend extends JFrame{
                         }
                     } catch (IOException ex){
                         lbCrestError.setVisible(true);
+                    } catch (StackOverflowError | OutOfMemoryError ex){
+                        JOptionPane.showMessageDialog(null, "Out of memory :<");
                     }
                 }
             }
