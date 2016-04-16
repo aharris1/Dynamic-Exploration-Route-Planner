@@ -4,6 +4,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.Desktop;
+import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -23,6 +24,7 @@ public class Frontend extends JFrame{
     private JButton refreshAuthorizationButton;
     private JTextField URLTextField;
     private JCheckBox ckAvoidLowsec;
+    private JLabel lbCrestError;
 
     private static long lastAuthRefresh;
     private static long lastUniverseRefresh;
@@ -41,6 +43,7 @@ public class Frontend extends JFrame{
     private Universe universe = CSVtoUniverse.generateUniverse();
 
     public Frontend(){
+
         setContentPane(contentPane);
 
 
@@ -98,6 +101,7 @@ public class Frontend extends JFrame{
         buttonStartRoute.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                lbCrestError.setVisible(false);
                 int jumps = Integer.parseInt(Jumps.getValue().toString());
                 boolean avoidLow = ckAvoidLowsec.isSelected();
                 if(!authCode.isEmpty() && characterID != -1){
@@ -111,15 +115,19 @@ public class Frontend extends JFrame{
                         authCode = authenticator.refresh(refreshCode);
                         lastAuthRefresh = System.currentTimeMillis();
                     }
-                    LinkedList<SolarSystem> route = RouteGenerator.selectBestRoute(RouteGenerator.generateRoutes(universe.getSolarSystem(CRESTInterface.currentLocation(authCode, characterID)), jumps, avoidLow));
-                    HashSet<Integer> VisitedSystems = new HashSet<Integer>();
-                    for(SolarSystem solarSystem : route){
-                        solarSystem.setVisited(true, false);
-                        System.out.println(solarSystem.toString());
-                        if (VisitedSystems.contains(solarSystem.getID()) == false) {
-                            CRESTInterface.addWaypoint(authCode, characterID, solarSystem.getID());
-                            VisitedSystems.add(solarSystem.getID());
+                    try {
+                        LinkedList<SolarSystem> route = RouteGenerator.selectBestRoute(RouteGenerator.generateRoutes(universe.getSolarSystem(CRESTInterface.currentLocation(authCode, characterID)), jumps, avoidLow));
+                        HashSet<Integer> VisitedSystems = new HashSet<Integer>();
+                        for (SolarSystem solarSystem : route) {
+                            solarSystem.setVisited(true, false);
+                            System.out.println(solarSystem.toString());
+                            if (VisitedSystems.contains(solarSystem.getID()) == false) {
+                                CRESTInterface.addWaypoint(authCode, characterID, solarSystem.getID());
+                                VisitedSystems.add(solarSystem.getID());
+                            }
                         }
+                    } catch (IOException ex){
+                        lbCrestError.setVisible(true);
                     }
                 }
             }
