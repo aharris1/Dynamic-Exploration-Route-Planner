@@ -20,10 +20,9 @@ public class RouteGenerator {
      */
     public static Vector<LinkedList<SolarSystem>> generateRoutes(Vector<LinkedList<SolarSystem>> returnSet, LinkedList<SolarSystem> currentPath, int desiredLength, boolean avoidLow) {
         //if the path is long enough, or if we hit the sanity limit of 20, it's time to return
-        int uniques = getUniqueCount(currentPath);
-        if(getUniqueCount(currentPath) >= desiredLength || currentPath.size() > 20){
+        //its greater than desired length because we start with our current system
+        if(getUniqueCount(currentPath) > desiredLength || currentPath.size() > 20){
             returnSet.add(currentPath);
-            return returnSet;
         }
         else {
             SolarSystem currentSystem = currentPath.getLast();
@@ -36,17 +35,17 @@ public class RouteGenerator {
                         continue;
                     }
                 }
-                if (currentPath.size() > 2) {
+                if (currentPath.size() > 1) {
                     SolarSystem parent = currentPath.get(currentPath.size() - 2);
-                    if (parent.getID() == workingSystem.getID()){
+                    if (parent.getID() == workingSystem.getID() && currentSystem.getConnectedSolarSystems().size() > 1){
                         continue;
                     }
                 }
                 newPath.add(workingSystem);
-                returnSet.addAll(generateRoutes(returnSet, newPath, desiredLength, avoidLow));
+                generateRoutes(returnSet, newPath, desiredLength, avoidLow);
             }
-            return returnSet;
         }
+        return returnSet;
     }
 
     public static int getUniqueCount(LinkedList<SolarSystem> route){
