@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.HashSet;
+import java.util.Vector;
 
 public class Frontend extends JFrame{
     private JPanel contentPane;
@@ -116,7 +117,11 @@ public class Frontend extends JFrame{
                         lastAuthRefresh = System.currentTimeMillis();
                     }
                     try {
-                        LinkedList<SolarSystem> route = RouteGenerator.selectBestRoute(RouteGenerator.generateRoutes(universe.getSolarSystem(CRESTInterface.currentLocation(authCode, characterID)), jumps, avoidLow));
+                        Vector<LinkedList<SolarSystem>> routes = new Vector<LinkedList<SolarSystem>>();
+                        SolarSystem initialSystem = universe.getSolarSystem(CRESTInterface.currentLocation(authCode, characterID));
+                        LinkedList<SolarSystem> initialList = new LinkedList<SolarSystem>();
+                        initialList.add(initialSystem);
+                        LinkedList<SolarSystem> route = RouteGenerator.selectBestRoute(RouteGenerator.generateRoutes(routes, initialList, jumps, avoidLow));
                         HashSet<Integer> VisitedSystems = new HashSet<Integer>();
                         for (SolarSystem solarSystem : route) {
                             solarSystem.setVisited(true, false);
