@@ -44,34 +44,6 @@ public class RouteGenerator {
             }
             return returnSet;
         }
-        /*
-        if (length > 0) {
-            List<LinkedList<SolarSystem>> routes = new ArrayList<LinkedList<SolarSystem>>();
-            //Looks at each
-            for (SolarSystem option : start.getConnectedSolarSystems()) {
-                //Recursive function: For each option it adds all of the routes that start with that option to the list of routes
-                //Decrements the length value to produce end case: length == 0.
-                for (LinkedList<SolarSystem> generatedRoute : generateRoutes(option, length - 1, avoidLow)) {
-                    if (avoidLow == true){
-                        if(option.getSecurity() < 0.5){
-                            continue;
-                        }
-                    }
-                    LinkedList<SolarSystem> bufferList = new LinkedList<SolarSystem>();
-                    bufferList.add(option); //Adds the first node jumped to as the first step to the bufferList
-                    bufferList.addAll(generatedRoute); //Adds the routes that the option can produce to the bufferList
-                    routes.add(bufferList); //Adds the route stored in the bufferList to the overall list of routes
-                }
-            }
-            LinkedList<SolarSystem>[] returnArray = new LinkedList[routes.size()];
-            return routes.toArray(returnArray);
-        }
-        else {
-            LinkedList<SolarSystem>[] returnArray = new LinkedList[1];
-            returnArray[0] = new LinkedList<SolarSystem>();
-            return returnArray;
-        }
-        */
     }
 
     public static int getUniqueCount(LinkedList<SolarSystem> route){
