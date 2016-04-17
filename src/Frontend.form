@@ -46,7 +46,7 @@
             </constraints>
             <properties>
               <labelFor value="ef336"/>
-              <text value="Jumps:"/>
+              <text value="Systems to visit:"/>
             </properties>
           </component>
         </children>
