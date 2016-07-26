@@ -72,7 +72,7 @@ public class CRESTInterface {
                 "    \"first\": false\n" +
                 "}";
         HttpContent content = ByteArrayContent.fromString("application/json", POSTContent);
-        String urlStr = URL_CREST + "/characters/"+ characterID + "/navigation/waypoints/";
+        String urlStr = URL_CREST + "/characters/"+ characterID + "/ui/autopilot/waypoints/":
         GenericUrl url = new GenericUrl(urlStr);
 
         HttpRequest request = null;
