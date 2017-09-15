@@ -12,13 +12,13 @@ Steps for initial authorization and setup:<br>
 6. Copy and save the refresh token<br>![](step6.PNG) (Save one per character)<br>
 <p>
 Steps for later authorization and setup:<br>
-1. Paste refresh token into Refresh Token<br>![](refresh1.PNG)<br>
-2. Press Refresh Authorization<br>![](refresh2.PNG)<br>
+1. Paste refresh token into Refresh Token<br><img src="refresh1.PNG" class="img-responsive" alt=""><br>
+2. Press Refresh Authorization<br><img src="refresh2.PNG" class="img-responsive" alt=""><br>
 <p>
 Steps for use:<br>
 1. Enter desired path length in the spinner<br><img src="use1.PNG" class="img-responsive" alt=""><br>
-2. Press start<br>![](use2.PNG)<br>
-3. See waypoints in EVE Client<br>![](use3.PNG)<br>
+2. Press start<br><img src="use2.PNG" class="img-responsive" alt=""><br>
+3. See waypoints in EVE Client<br><img src="use3.PNG" class="img-responsive" alt=""><br>
 4. Fly along waypoints (scanning when appropriate) until you reach the end, then repeat from step one.<br>
 <p>
 Notes about use:<br>
